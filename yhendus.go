@@ -9,9 +9,9 @@ import (
 
 
 func yhendus(w http.ResponseWriter, req *http.Request) {
-	//db, err := sql.Open("postgres", "user=vcjthhaofvkqke dbname=dedgfoiefjhcdu sslmode=disable 
-	//	password=QXnZclsVqyZPU5C8Tn_ch81Qt2 host=ec2-54-217-238-100.eu-west-1.compute.amazonaws.com port=5432 ")
-	db, err := sql.Open("postgres", "postgres://vcjthhaofvkqke:QXnZclsVqyZPU5C8Tn_ch81Qt2@ec2-54-217-238-100.eu-west-1.compute.amazonaws.com:5432/dedgfoiefjhcdu")
+	//db, err := sql.Open("postgres", "user=bfmgwbvnvpqnps dbname=d3b1ljbjr0e123 sslmode=disable 
+	//	password=D9jvuDlVzqp9BELsCAt0eNzesm host=ec2-54-225-201-25.compute-1.amazonaws.com ")
+	db, err := sql.Open("postgres", "postgres://bfmgwbvnvpqnps:D9jvuDlVzqp9BELsCAt0eNzesm@ec2-54-225-201-25.compute-1.amazonaws.com:5432/d3b1ljbjr0e123")
 	if err != nil {
 		log.Fatal(err)
 	}
