@@ -35,7 +35,7 @@ log.Printf("ID = %d, affected = %d\n", lastId, rowCnt)
 }
 
 func main() {
-	http.HandleFunc("/yhendus", yhendus)
+	http.HandleFunc("/yhendus.go", yhendus)
 	err := http.ListenAndServe(":8080", nil)
 	if err != nil {
 		log.Fatal("ListenAndServe: ", err)
