@@ -110,6 +110,13 @@
   <p>Vali piletid saaliplaanilt!</p>
 </div>
 
+<h1>Add a wish</h1>
+    <form action="/wishes" method="POST" class="pure-form">
+      <input type="text" name="name" placeholder="name" />
+      <input type="text" name="description" placeholder="description" />
+      <input type="submit" value="submit" class="pure-button pure-button-primary"/>
+    </form>
+
 <!-- Kontaktandmed kogutakse siit formist -->
 <form role="form" name="form" method="POST" action="/yhendus">
 <div class="col-md-6">
