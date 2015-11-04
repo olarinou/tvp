@@ -1,5 +1,5 @@
 {
-	"ImportPath": "github.com/ranal/piletimyyk",
+	"ImportPath": "github.com/ranal/tarkvaraprojekt/tarkvaraprojekt",
 	"GoVersion": "go1.5.1",
 	"Packages": [
 		"./..."
@@ -26,6 +26,15 @@
 		{
 			"ImportPath": "github.com/mattn/go-isatty",
 			"Rev": "7fcbc72f853b92b5720db4a6b8482be612daef24"
+		},
+		{
+			"ImportPath": "github.com/russross/blackfriday",
+			"Comment": "v1.3",
+			"Rev": "8cec3a854e68dba10faabbe31c089abf4a3e57a6"
+		},
+		{
+			"ImportPath": "github.com/shurcooL/sanitized_anchor_name",
+			"Rev": "244f5ac324cb97e1987ef901a0081a77bfd8e845"
 		},
 		{
 			"ImportPath": "golang.org/x/net/context",

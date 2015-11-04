@@ -1,0 +1,40 @@
+# Alguses see töötas
+# language setting
+language: go
+
+# version numbers
+go:
+  - 1.4
+
+# Addons used by app
+addons:
+  postgresql: "9.4"
+
+install:
+  gvm install go1.4 
+  gvm use go1.4 
+  export GOROOT_BOOTSTRAP=$GOROOT 
+  gvm install go1.5
+
+----
+  # install local DynamoDB
+  - wget http://dynamodb-local.s3-website-us-west-2.amazonaws.com/dynamodb_local_latest.tar.gz -O /tmp/dynamodb_local_latest.tar.gz
+  - tar -xzf /tmp/dynamodb_local_latest.tar.gz -C /tmp
+  - java -Djava.library.path=/tmp/DynamoDBLocal_lib -jar /tmp/DynamoDBLocal.jar -inMemory &  
+  --
+
+# Make folders for the reports
+before_script:
+  - mkdir -p shippable/testresults
+  - mkdir -p shippable/codecoverage
+
+script:
+  - go test -coverprofile=coverage.txt -covermode count ./
+  - $GOPATH/bin/gocover-cobertura < coverage.txt > shippable/codecoverage/coverage.xml
+  - CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o main .
+
+after_script:
+  - cp main ./shippable/buildoutput
+  - cp -r api ./shippable/buildoutput/api
+  - ls ./shippable -ltrR
+  - cat ./shippable/codecoverage/coverage.xml

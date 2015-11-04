@@ -22,7 +22,7 @@
       <center><img src="/static/img/elektriteater_logo.png"></center>
       </div>
 
-      <center><h1>Osta pilet</h1></center>
+      <center><h1>Olari pilet</h1></center>
 
       <!-- Dropdown filmi valimiseks
            TODO: Prepopulate andmebaasist -->
@@ -86,23 +86,47 @@
 <!-- Pileti tüüp, hind, kogus -->
 <table class="table">
     <tbody>
-      <tr>
-        <td>Tavapilet</td>
-        <td>8€</td>
-        <td>Vali kogus</td>
-      </tr>
-      <tr>
-        <td>Pensionär</td>
-        <td>6,20€</td>
-        <td>Vali kogus</td>
-      </tr>
-      <tr>
-        <td>Alla 14-aastane laps</td>
-        <td>5€</td>
-        <td>Vali kogus</td>
-      </tr>
-    </tbody>
-</table>
+             <tr>
+         <td>Tavapilet</td>
+         <td>8€</td>
+        <td><select class="form-control" name='pensionar' id='tavapilet' onchange=''>
+                <option>Vali kogus</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+            </select>
+        </td>
+       </tr>
+       <tr>
+         <td>Pensionär</td>
+         <td>6,20€</td>
+        <td><select class="form-control" name='pensionar' id='pensionar' onchange=''>
+                <option>Vali kogus</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+            </select>
+        </td>
+       </tr>
+       <tr>
+         <td>Alla 14-aastane laps</td>
+         <td>5€</td>
+        <td><select class="form-control" name='laps' id='laps' onchange=''>
+                <option>Vali kogus</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+            </select>
+        </td>
+       </tr>
+     </tbody>
+ </table>
 
 <!-- Jumbotron on praegu placeholder saaliplaani jaoks -->
 <div class="jumbotron">
@@ -110,15 +134,8 @@
   <p>Vali piletid saaliplaanilt!</p>
 </div>
 
-<h1>Add a wish</h1>
-    <form action="/yhendus" method="POST" class="pure-form">
-      <input type="text" name="name" placeholder="name" />
-      <input type="text" name="description" placeholder="description" />
-      <input type="submit" value="submit" class="pure-button pure-button-primary"/>
-    </form>
-
 <!-- Kontaktandmed kogutakse siit formist -->
-<form role="form" name="form" method="POST" action="/yhendus">
+<form role="form" name="form" method="GET" action="/db">
 <div class="col-md-6">
         <h3 class="dark-grey">Kontaktandmed</h3>
         <div class="form-group col-lg-6">
@@ -126,72 +143,42 @@
           <input type="text" name="eesnimi" class="form-control" id="eesnimi" value="">
         </div>
 
-        
         <div class="form-group col-lg-6">
           <label>Perekonnanimi</label>
           <input type="text" name="perekonnanimi" class="form-control" id="perekonnanimi" value="">
         </div>
 
 
-          <div class="form-group col-lg-12">
-          <label>E-mail</label>
-          <input type="email" name="email" class="form-control" id="email" value="">
+        <div class="form-group col-lg-12">
+        <label>E-mail</label>
+        <input type="email" name="email" class="form-control" id="email" value="">
         </div>
 
-          <div class="form-group col-lg-12">
-          <label>Telefoninumber</label>
-          <input type="number" name="telefon" class="form-control" id="telefon" value="">
+        <div class="form-group col-lg-12">
+        <label>Telefoninumber</label>
+        <input type="number" name="telefon" class="form-control" id="telefon" value="">
         </div>
 
-          <div class="col-lg-12">
-                    <label>Sooduskood</label>
-      <div class="input-group">
-      <input type="text" class="form-control" placeholder="Sooduskood" id="sooduskood" name="sooduskood">
-      <span class="input-group-btn">
-        <!--<button class="btn btn-default" type="button">OK</button>-->
-                <button type="submit" class="btn btn-primary">OK</button>
+        <div class="form-group col-lg-12">
+        <label>Sooduskood</label>
+        <input type="text" name="sooduskood" class="form-control" id="sooduskood" value="">
+        </div>
 
-      </span>
-    </div><!-- /input-group -->
-    </form>
-  </div><!-- /.col-lg-6 -->
-                
-       
-        
-        <div class="col-sm-6">
-        <label>Vali pank</label><br />
-        <!-- Hiljem labelite asemele img src pangalinkide logodega -->
+        <button type="submit" class="btn btn-primary">OK</button>
+
+    </div>
+  </form>
+
+        <div class="col-md-6">
+        <h3 class="dark-grey">Vali pank</h3>
         <input type="radio" name="scr[bank]" id="swedbank"/><label for="swedbank">Swedbank</label><br />
         <input type="radio" name="scr[bank]" id="seb"/><label for="seb">SEB</label><br />
         <input type="radio" name="scr[bank]" id="lhv"/><label for="seb">LHV</label><br />
-        </div>    
-      </div>
-    
-      <div class="col-md-6">
-        <h3 class="dark-grey">Informatsioon</h3>
-        <p>
-          Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec mollis. Quisque convallis libero in sapien pharetra tincidunt.
-        </p>
-        <p>
-          Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec mollis. Quisque convallis libero in sapien pharetra tincidunt.
-        </p>
-        <p>
-          Cras volutpat, lacus quis semper pharetra, nisi enim dignissim est, et sollicitudin quam ipsum vel mi. Sed commodo urna ac urna. Nullam eu tortor. Curabitur sodales scelerisque magna. Donec ultricies tristique pede. Nullam libero.
-        </p>
-        <p>
-          Praesent interdum mollis neque. In egestas nulla eget pede. Integer eu purus sed diam dictum scelerisque.
-        </p>
-        <p><h3>Kokku: 17,40€</h3></p>
-        
-        <button type="submit" class="btn btn-primary">Maksma</button>
-      </div>
-    </div>
+        </div>   
 
     <br />
 
     </div> <!-- /container -->
-
-
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="./index_files/ie10-viewport-bug-workaround.js"></script>
   

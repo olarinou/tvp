@@ -1,28 +1,28 @@
-# Build Environment
-build_environment: ubuntu1204
-
-# language setting
 language: go
 
-# version numbers
 go:
-  - 1.5
-  
+  - 1.4
+
+# Addons used by app
+addons:
+  postgresql: "9.4"
+
+env:
+  global:
+    - CI_REPORT=shippable/testresults/junit.xml
+    - AWS_REGION=eu-west-1
+
 before_install:
-  - go get github.com/lib/pq
-  - go get github.com/t-yuki/gocover-cobertura
-  - go get github.com/onsi/gomega
-  - go get github.com/onsi/ginkgo
-  - go get code.google.com/p/go.tools/cmd/cover
-  - mkdir -p $GOPATH/src/github.com/Shippable
-  - ln -sfn $PWD $GOPATH/src/github.com/Shippable/sample_go
+  - export GOPATH=$SHIPPABLE_GOPATH
+  - source $HOME/.gvm/scripts/gvm
+  - gvm install go$SHIPPABLE_GO_VERSION
+  - gvm use go$SHIPPABLE_GO_VERSION
+  - go get github.com/t-yuki/gocover-cobertura    
+  - go get golang.org/x/tools/cmd/cover
+  - go get github.com/stretchr/objx
+  - go get github.com/stretchr/testify/assert
 
-# Make folders for the reports
-before_script:
-  - mkdir -p shippable/testresults
-  - mkdir -p shippable/codecoverage
-  - psql -c 'CREATE DATABASE test;' -U postgres
 
-script:
-  - go test -coverprofile=coverage.txt -covermode count ./
-  - $GOPATH/bin/gocover-cobertura < coverage.txt > shippable/codecoverage/coverage.xml
+after_success:
+  - git push git@heroku.com:git@heroku.com:olaridemo.git master
+
